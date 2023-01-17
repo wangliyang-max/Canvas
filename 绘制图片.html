@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <canvas
+    id = "canvas1"
+    width="600"
+    height="600"
+    style="background: lightgray"
+    ></canvas>
+
+    <script>
+        // 找到画布
+        var canvas1 = document.getElementById("canvas1")
+        var ctx = canvas1.getContext("2d")
+
+        // 获取图片
+        let img = new Image()
+        img.src = "https://gd-hbimg.huaban.com/73dd3a9a1b2d252d167dcf150db368bd9df08e7181c20-Mstdc5_fw1200"
+        img.onload = function(){
+            // 第一种绘制图片的方式：ctx.drawImage(img,x1,y1) img是图片信息，x1,y1是图片绘制的起始地址
+            ctx.drawImage(img,0,0)
+
+            // 第二种绘制图片的方式：ctx.drawImage(img,x1,y1,x2,y2) img是图片信息，x1,y1是图片绘制的起点， x2,y2是图片绘制的终点。
+            // ctx.drawImage(img,0,0,500,500)
+
+            //  第三种绘制图片的方式：裁剪图片 ctx.drawImage(img,x1,y1,x2,y2,x3,y3,x4,y4) img是图片信息，x1,y1是裁剪图片的起点， x2,y2是裁剪图片的宽度和高度，x3,y3是画布的起点，x4,y4是在画布是那个渲染的宽高 
+            // ctx.drawImage(img,250,250,500,500, 0,0, 250,250)
+
+        }
+
+
+
+    </script>
+</body>
+</html>

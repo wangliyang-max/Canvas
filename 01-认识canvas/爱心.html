@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <canvas
+    id = "canvas1"
+    width="600"
+    height="600"
+    style="background: lightgray"
+    >
+    当前浏览器不支持canvas
+·   </canvas>
+
+    <script>
+        // 找到画布
+        var canvas1 = document.getElementById("canvas1")
+        if(!canvas1.getContext){
+            console.log("当前浏览器不支持canvas");
+        }
+        // 获取画笔(这里是2d画笔)
+        var ctx = canvas1.getContext("2d")
+
+        var heartPath = new Path2D()
+        heartPath.moveTo(300,200)
+        heartPath.bezierCurveTo(380,100,430,230, 300, 300)
+        heartPath.moveTo(300,200)
+        heartPath.bezierCurveTo(220,100,170,230, 300, 300)
+
+        // M10 10: 起点 （10， 10）
+        // h 80：水平移动80
+        // v 80：垂直移动80
+        // h -80: 水平移动-80
+        // z：回到原点 
+        var testPath = new Path2D("M10 10 h 80 v 80 h -80 z")
+        ctx.stroke(testPath)
+
+        ctx.stroke(heartPath)
+    </script>
+</body>
+</html>

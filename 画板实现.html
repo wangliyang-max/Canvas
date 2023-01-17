@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .button.active {
+        background: orange;
+        color: white;
+        font-weight: 600;
+        border: orange 2px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas
+        id="canvas1"
+        width="600"
+        height="600"
+        style="background: lightgrey"
+      ></canvas>
+      <hr />
+      <button id="boldBtn" type="button" class="button">粗线条</button>
+      <button id="thinBtn" type="button" class="button">细线条</button>
+      <button id="saveBtn" type="button" class="button">保存签名</button>
+      <input type="color" name="" id="color" class="button" />
+      <button id="clearBtn" class="button">橡皮擦</button>
+      <button id="nullBtn" class="button">清空画布</button>
+    </div>
+
+    <script>
+      (function () {
+        var canvas = document.getElementById("canvas1");
+        var ctx = canvas.getContext("2d");
+
+        // 连接处圆润
+        ctx.lineJoin = "round";
+        // 起终点圆润
+        ctx.lineCap = "round";
+        // 设置是否允许绘画的变量
+        var isDraw = false;
+
+        canvas.onmousedown = (e) => {
+          isDraw = true;
+          ctx.beginPath();
+          var x = e.pageX - canvas.offsetLeft;
+          var y = e.pageY - canvas.offsetTop;
+          ctx.moveTo(x, y);
+        };
+        canvas.onmousemove = (e) => {
+          if (isDraw) {
+            var x = e.pageX - canvas.offsetLeft;
+            var y = e.pageY - canvas.offsetTop;
+            ctx.lineTo(x, y);
+            // ctx.fill();
+            ctx.stroke();
+          }
+        };
+
+        canvas.onmouseleave = (e) => {
+          isDraw = false;
+          ctx.closePath();
+        };
+
+        canvas.onmouseup = (e) => {
+          isDraw = false;
+          ctx.closePath();
+        };
+
+        // 按钮
+        var boldBtn = document.getElementById("boldBtn");
+        var thinBtn = document.getElementById("thinBtn");
+        var saveBtn = document.getElementById("saveBtn");
+        var color = document.getElementById("color");
+        var clearBtn = document.getElementById("clearBtn");
+        var nullBtn = document.getElementById("nullBtn");
+
+        boldBtn.onclick = () => {
+          ctx.globalCompositeOperation = "source-over";
+          ctx.lineWidth = 20;
+          //   为Button添加active样式
+          boldBtn.classList.add("active");
+          thinBtn.classList.remove("active");
+          clearBtn.classList.remove("active");
+        };
+        thinBtn.onclick = () => {
+          ctx.globalCompositeOperation = "source-over";
+          ctx.lineWidth = 2;
+          //   为Button添加active样式
+          thinBtn.classList.add("active");
+          boldBtn.classList.remove("active");
+          clearBtn.classList.remove("active");
+        };
+        clearBtn.onclick = () => {
+          ctx.globalCompositeOperation = "destination-out";
+          ctx.lineWidth = 30;
+
+          clearBtn.classList.add("active");
+          boldBtn.classList.remove("active");
+          thinBtn.classList.remove("active");
+        };
+        nullBtn.onclick = () => {
+          ctx.clearRect(0, 0, 600, 600);
+        };
+
+        saveBtn.onclick = () => {
+          // 将画布的信息转换成url的形式
+          var urlData = canvas.toDataURL();
+          var downloadA = document.createElement("a");
+          downloadA.download = "yang";
+          downloadA.href = urlData;
+          downloadA.click();
+        };
+
+        color.onchange = function () {
+          ctx.strokeStyle = color.value;
+        };
+      })();
+    </script>
+  </body>
+</html>

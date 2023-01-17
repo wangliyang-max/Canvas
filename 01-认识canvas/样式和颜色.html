@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <canvas
+    id = "canvas1"
+    width="600"
+    height="600"
+    style="background: lightgray"
+    ></canvas>
+
+    <script>
+        // 找到画布
+        var canvas1 = document.getElementById("canvas1")
+        // 获取画笔(这里是2d画笔)
+        var ctx = canvas1.getContext("2d")
+
+        // 渐变色
+        // createLinearGradient(x1,y1,x2,y2)， x1\y1渐变的起点，x2\y2渐变的终点
+        let linearGradient = ctx.createLinearGradient(100,200,400,400)
+        // addColorStop设置渐变颜色 0表示起点颜色，1表示终点颜色
+        linearGradient.addColorStop(0,"red")
+        // linearGradient.addColorStop(0.5,"#ffcccc")
+        linearGradient.addColorStop(1,"blue")
+        // 将渐变设置为填充样式
+        ctx.fillStyle = linearGradient
+
+        ctx.rect(100, 200, 300, 200)
+        ctx.fill()
+
+
+    </script>
+</body>
+</html>

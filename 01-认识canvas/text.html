@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div
+    style = "width:100px;height:100px;background:pink"
+    >
+
+    </div>
+    <script>
+        function createPromise(){
+            return new Promise(function (resolve,reject){
+            resolve(9)
+           
+        }
+            )
+        }
+        async function foo() { 
+        console.log(1); 
+
+        // await 后面紧接的代码不受影响，该同步同步，该异步异步，该行语句之后的代码都是异步的，
+        // 所以说await既可以对同步语句起作用也可以对异步语句起作用
+        await createPromise().then(
+            console.log
+        )
+        // await console.log('9')
+        console.log('7');
+        return 3; 
+        } 
+        // 给返回的 Promise 添加一个解决处理程序
+        foo().then(console.log);
+        console.log(2); 
+        console.log(window.devicePixelRatio);
+    </script>
+</body>
+</html>

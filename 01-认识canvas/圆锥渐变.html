@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <canvas
+    id = "canvas1"
+    width="600"
+    height="600"
+    style="background: lightgray"
+    ></canvas>
+
+    <script>
+        // 找到画布
+        var canvas1 = document.getElementById("canvas1")
+        // 获取画笔(这里是2d画笔)
+        var ctx = canvas1.getContext("2d")
+
+        // createConeGradient(r,x1,y1):r：开始渐变的角度，x1，y1渐变旋转的圆心
+        let coneGradient = ctx.createConicGradient(0,300,300)
+        coneGradient.addColorStop(0,"white")
+        coneGradient.addColorStop(1,"blue")
+        ctx.fillStyle = coneGradient
+        ctx.rect(0,0, 600,600)
+        ctx.fill() 
+
+    </script>
+</body>
+</html>

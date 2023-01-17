@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas
+       id="canvas"
+       width = 600
+       height=600width="600"
+       height="600"
+       style="background: lightgray"
+       >
+    </canvas>
+
+    <script>
+        var c1 = document.getElementById("canvas")
+        var ctx = c1.getContext("2d")
+
+        // 水平移动100像素，竖直移动100像素
+        // ctx.transform(1,0, 0, 1,100,100)
+
+        // 顺时针旋转45度(旋转后的图像在原坐标的位置来确定前四个参数的大小)
+        // (1,0)旋转45度后再原坐标的位置是（1/sqrt(2),1/sqrt(2)）
+        ctx.transform(1/Math.sqrt(2),1/Math.sqrt(2),-1/Math.sqrt(2),1/Math.sqrt(2),100,100)
+
+        ctx.fillRect(0,0,500,50)
+
+    </script>
+</body>
+</html>

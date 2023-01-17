@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--  -->
+    <canvas
+      id="canvas1"
+      width="600"
+      height="400"
+      style="background: lightgray"
+    ></canvas>
+    <script>
+      // 找到画布
+      var canvas1 = document.getElementById("canvas1");
+      var ctx = canvas1.getContext("2d");
+
+      let img = new Image();
+      img.src = "./QQ截图20230117100435.png";
+
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, 600, 400);
+        // 获取画布的像素信息：画笔.getImageData(x1,y1,x2,y2)
+        // 像素信息是一个一维数组，四个值是一个像素点的信息分别代表 rgba的四个值
+        let imageData = ctx.getImageData(0, 0, 600, 400);
+
+        for (let i = 0; i < imageData.data.length; i += 4) {
+          // 变灰
+          let avg =
+            (imageData.data[i] +
+              imageData.data[i + 1] +
+              imageData.data[i + 2]) /
+            3;
+          imageData.data[i] = avg;
+          imageData.data[i + 1] = avg;
+          imageData.data[i + 2] = avg;
+          imageData.data[i + 3] = 255;
+        }
+
+        //将修改好的数据重新渲染到画布上
+
+        ctx.putImageData(imageData, 0, 0, 300, 200, 300, 200);
+      };
+    </script>
+  </body>
+</html>

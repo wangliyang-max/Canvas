@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <canvas
+    id = "canvas1"
+    width="600"
+    height="600"
+    style="background: lightgray"
+    ></canvas>
+
+    <script>
+        // 找到画布
+        var canvas1 = document.getElementById("canvas1")
+        // 获取画笔(这里是2d画笔)
+        var ctx = canvas1.getContext("2d")
+        // 绘制图形
+        // ctx.beginPath()
+        // ctx.arc(200,200, 100,0, Math.PI*2)
+        // ctx.stroke()
+        // ctx.closePath()
+
+        // ctx.beginPath()
+        // ctx.arc(200,200, 70,0, Math.PI)
+        // ctx.stroke()
+        // ctx.closePath()
+
+        // ctx.beginPath()
+        // ctx.arc(150,180, 25,0, Math.PI, true)
+        // ctx.stroke()
+        // ctx.closePath()
+
+        // ctx.beginPath()
+        // ctx.arc(250,180, 25,0, Math.PI, true)
+        // ctx.stroke()
+        // ctx.closePath()
+
+        // moveTo实现
+        ctx.arc(200,200, 100,0, Math.PI*2)
+        ctx.moveTo(270, 200)
+
+        ctx.arc(200,200, 70,0, Math.PI)
+        ctx.moveTo(175, 180)
+
+        ctx.arc(150,180, 25,0, Math.PI, true)
+        ctx.moveTo(275, 180)
+
+        ctx.arc(250,180, 25,0, Math.PI, true)
+
+        ctx.stroke()
+        
+    </script>
+</body>
+</html>

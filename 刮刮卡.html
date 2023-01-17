@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #ggk {
+        width: 600px;
+        height: 400px;
+        font-size: 30px;
+        font-weight: 900;
+        text-align: center;
+        line-height: 400px;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+      }
+
+      canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ggk">谢谢惠顾</div>
+    <canvas id="c1" width="600" height="400"></canvas>
+    <script>
+      var canvas = document.getElementById("c1");
+      var ctx = canvas.getContext("2d");
+      let img = new Image();
+      img.src = "./QQ截图20230117100435.png";
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, 600, 400);
+      };
+
+      var isShow = false;
+      canvas.onmouseup = function () {
+        isShow = false;
+      };
+      canvas.onmousedown = function () {
+        isShow = true;
+      };
+
+      canvas.onmousemove = function (e) {
+        if (isShow) {
+          var x = e.pageX;
+          var y = e.pageY;
+
+          ctx.globalCompositeOperation = "destination-out";
+
+          ctx.arc(x, y, 20, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+      };
+
+      let random = Math.random();
+      if (random < 0.1) {
+        var ggk = document.getElementById("ggk");
+        ggk.innerHTML = "一等奖";
+      }
+    </script>
+  </body>
+</html>

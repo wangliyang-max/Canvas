@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <canvas
+    id = "canvas1"
+    width="600"
+    height="600"
+    style="background: lightgray"
+    ></canvas>
+
+    <script>
+        // 找到画布
+        var canvas1 = document.getElementById("canvas1")
+        // 获取画笔(这里是2d画笔)
+        var ctx = canvas1.getContext("2d")
+
+        let index = 0
+
+        function render(){
+            ctx.clearRect(0,0,600,600)
+            index+=0.01;
+            if(index>1){
+                index = 0
+            }
+            let linearGradient = ctx.createLinearGradient(100,200,400,400)
+            linearGradient.addColorStop(0,"red")
+            linearGradient.addColorStop(index,"rgba(255,255,255,0.5)")
+            linearGradient.addColorStop(1,"blue")
+            ctx.fillStyle = linearGradient
+            ctx.rect(100, 200, 300, 200)
+            ctx.fill()
+            requestAnimationFrame(render)
+        }
+
+        // 动画渲染
+        requestAnimationFrame(render)
+
+    </script>
+</body>
+</html>
